@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Geopackage-wkb-ios by ngageoint</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Geopackage-wkb-ios</h1>
+      <h2 class="project-tagline">GeoPackage WKB iOS Library</h2>
+      <a href="https://github.com/ngageoint/geopackage-wkb-ios" class="btn">View on GitHub</a>
+      <a href="https://github.com/ngageoint/geopackage-wkb-ios/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/ngageoint/geopackage-wkb-ios/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="geopackage-wkb-ios" class="anchor" href="#geopackage-wkb-ios" aria-hidden="true"><span class="octicon octicon-link"></span></a>GeoPackage WKB iOS</h1>
+
+<h4>
+<a id="geopackage-well-known-binary-lib" class="anchor" href="#geopackage-well-known-binary-lib" aria-hidden="true"><span class="octicon octicon-link"></span></a>GeoPackage Well Known Binary Lib</h4>
+
+<p>The <a href="http://ngageoint.github.io/GeoPackage/">GeoPackage Libraries</a> were developed at the <a href="http://www.nga.mil/">National Geospatial-Intelligence Agency (NGA)</a> in collaboration with <a href="http://www.bit-sys.com/">BIT Systems</a>. The government has "unlimited rights" and is releasing this software to increase the impact of government investments by providing developers with the opportunity to take things in new directions. The software use, modification, and distribution rights are stipulated within the <a href="http://choosealicense.com/licenses/mit/">MIT license</a>.</p>
+
+<h3>
+<a id="pull-requests" class="anchor" href="#pull-requests" aria-hidden="true"><span class="octicon octicon-link"></span></a>Pull Requests</h3>
+
+<p>If you'd like to contribute to this project, please make a pull request. We'll review the pull request and discuss the changes. All pull request contributions to this project will be released under the MIT license.</p>
+
+<p>Software source code previously released under an open source license and then modified by NGA staff is considered a "joint work" (see 17 USC § 101); it is partially copyrighted, partially public domain, and as a whole is protected by the copyrights of the non-government authors and must be released according to the terms of the original open source license.</p>
+
+<h3>
+<a id="about" class="anchor" href="#about" aria-hidden="true"><span class="octicon octicon-link"></span></a>About</h3>
+
+<p><a href="http://ngageoint.github.io/geopackage-wkb-ios/">WKB</a> is an iOS Objective-C library for writing and reading Well-Known Binary Geometries to and from bytes. The library includes a hierarchy of Geometry objects. Although developed as part of the <a href="http://ngageoint.github.io/GeoPackage/">GeoPackage Libraries</a>, this library does not contain GeoPackage functionality and can be used separately.</p>
+
+<h3>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h3>
+
+<h4>
+<a id="read" class="anchor" href="#read" aria-hidden="true"><span class="octicon octicon-link"></span></a>Read</h4>
+
+<pre><code>//NSData * bytes = ...    
+
+WKBByteReader * reader = [[WKBByteReader alloc] initWithData:bytes];
+[reader setByteOrder:CFByteOrderBigEndian];
+WKBGeometry * geometry = [WKBGeometryReader readGeometryWithReader:reader];
+WKBGeometryType geometryType = geometry.geometryType;
+</code></pre>
+
+<h4>
+<a id="write" class="anchor" href="#write" aria-hidden="true"><span class="octicon octicon-link"></span></a>Write</h4>
+
+<pre><code>//WKBGeometry * geometry = ...
+
+WKBByteWriter * writer = [[WKBByteWriter alloc] init];
+[writer setByteOrder:CFByteOrderBigEndian];
+[WKBGeometryWriter writeGeometry:geometry withWriter:writer];
+NSData * bytes = [writer getData];
+[writer close];
+</code></pre>
+
+<h3>
+<a id="build" class="anchor" href="#build" aria-hidden="true"><span class="octicon octicon-link"></span></a>Build</h3>
+
+<p>Build this repository using Xcode and/or CocoaPods:</p>
+
+<pre><code>pod install
+</code></pre>
+
+<p>Open wkb-ios.xcworkspace in Xcode</p>
+
+<h3>
+<a id="include-library" class="anchor" href="#include-library" aria-hidden="true"><span class="octicon octicon-link"></span></a>Include Library</h3>
+
+<p>Use this repository by specifying it in a Podfile using a supported option:</p>
+
+<pre><code>pod 'wkb-ios', :git =&gt; 'https://github.com/ngageoint/geopackage-wkb-iOS.git', :branch =&gt; 'master'
+pod 'wkb-ios', :git =&gt; 'https://github.com/ngageoint/geopackage-wkb-iOS.git', :tag =&gt; '1.0.0'
+pod 'wkb-ios', :path =&gt; '../wkb-ios'
+pod 'wkb-ios', '~&gt; 1.0' # Not yet supported, CocoaPod coming soon
+</code></pre>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/ngageoint/geopackage-wkb-ios">Geopackage-wkb-ios</a> is maintained by <a href="https://github.com/ngageoint">ngageoint</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
